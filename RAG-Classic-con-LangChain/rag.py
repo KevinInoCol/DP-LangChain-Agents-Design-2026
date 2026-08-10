@@ -19,7 +19,7 @@ from supabase import create_client
 
 if __name__ == '__main__':
     #=================================== Paso 1: Documment Loader =======================================
-    path = "Base_de_Conocimientos/MANUAL DE TRÁMITES.pdf"
+    path = "Base_de_Conocimientos/MANUAL DE TRÁMITES - Municipio de Girardota.pdf"
     loader = PyPDFLoader(path)
     documentos = loader.load()
 

@@ -181,13 +181,18 @@ clásico de cuatro pasos.
 | 3. Embeddings | `OpenAIEmbeddings` con `text-embedding-ada-002` |
 | 4. VectorStore | `SupabaseVectorStore.from_documents()` — sube los vectores |
 
-**Antes de ejecutarlo:** coloca tu PDF en `RAG-Classic-con-LangChain/Base_de_Conocimientos/`.
-Los PDFs no se versionan, así que la carpeta llega vacía tras el `git clone`. Si tu
-archivo tiene otro nombre, ajusta la variable `path` en `rag.py`.
+El repo ya incluye un PDF de ejemplo en `Base_de_Conocimientos/`
+(*Manual de Trámites — Municipio de Girardota*, 95 páginas → 690 chunks), así que
+puedes ejecutarlo tal cual después del `git clone`. Para usar otro documento, colócalo
+en esa misma carpeta y ajusta la variable `path` en `rag.py`.
 
 ```bash
-python RAG-Classic-con-LangChain/rag.py
+cd RAG-Classic-con-LangChain
+python rag.py
 ```
+
+> ⚠️ Ejecútalo **desde dentro de su carpeta**: `rag.py` usa una ruta relativa para el
+> PDF, así que lanzarlo desde la raíz del repo falla con `FileNotFoundError`.
 
 Necesita `SUPABASE_URL` y `SUPABASE_SECRET_KEY` en tu `.env`. La tabla destino y su
 función de búsqueda deben existir en Supabase — el SQL está en
@@ -239,7 +244,7 @@ Así un asesor humano puede tomar el control de una conversación en cualquier m
 │
 ├── RAG-Classic-con-LangChain/       # Ingesta de PDFs a Supabase (pipeline RAG)
 │   ├── rag.py                       # Loader → Splitter → Embeddings → VectorStore
-│   └── Base_de_Conocimientos/       # ⬅ pon aquí tus PDFs (no se versionan)
+│   └── Base_de_Conocimientos/       # PDFs a ingestar (incluye el de ejemplo)
 │
 ├── tools/                           # Tools reutilizables por los agentes
 │   ├── Base_de_conocimiento.py      # RAG sobre Supabase
