@@ -26,6 +26,12 @@ supabase>=1.0.0           # Cliente de Supabase
 numpy                     # Cálculo de similitud coseno
 
 # ============================================
+# RAG CLASSIC - Ingesta de documentos
+# ============================================
+langchain-text-splitters  # RecursiveCharacterTextSplitter (chunking)
+pypdf                     # Loader de PDFs (PyPDFLoader)
+
+# ============================================
 # TOOLS
 # ============================================
 langchain-tavily          # Búsqueda en internet (Tavily) - Nueva API
@@ -46,7 +52,6 @@ python-dotenv             # Variables de entorno (.env)
 # ============================================
 # OPCIONAL - Para notebooks y otros proyectos
 # ============================================
-# pypdf>=3.0.0            # Loader de PDFs
 # faiss-cpu               # Vector store local
 # chromadb                # Vector store ChromaDB
 # transformers            # Modelos Hugging Face

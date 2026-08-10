@@ -168,6 +168,33 @@ encadenarse el `🔍` y el `🌐` en consola.
 
 ---
 
+## RAG Classic — cargar tu base de conocimiento
+
+Los agentes C y D **consultan** la base de conocimiento, pero alguien tiene que
+**llenarla** primero. Eso hace `RAG-Classic-con-LangChain/rag.py`: el pipeline RAG
+clásico de cuatro pasos.
+
+| Paso | Qué usa |
+|:--|:--|
+| 1. Document Loader | `PyPDFLoader` — lee el PDF página por página |
+| 2. Chunking | `RecursiveCharacterTextSplitter` — `chunk_size=512`, `overlap=128` |
+| 3. Embeddings | `OpenAIEmbeddings` con `text-embedding-ada-002` |
+| 4. VectorStore | `SupabaseVectorStore.from_documents()` — sube los vectores |
+
+**Antes de ejecutarlo:** coloca tu PDF en `RAG-Classic-con-LangChain/Base_de_Conocimientos/`.
+Los PDFs no se versionan, así que la carpeta llega vacía tras el `git clone`. Si tu
+archivo tiene otro nombre, ajusta la variable `path` en `rag.py`.
+
+```bash
+python RAG-Classic-con-LangChain/rag.py
+```
+
+Necesita `SUPABASE_URL` y `SUPABASE_SECRET_KEY` en tu `.env`. La tabla destino y su
+función de búsqueda deben existir en Supabase — el SQL está en
+`RAG-Classic-con-LangChain/snippet para Supabase.md`.
+
+---
+
 ## Integración con Chatwoot
 
 `main_chatwoot_ia_off.py` levanta un servidor **FastAPI** que conecta el agente D a
@@ -209,6 +236,10 @@ Así un asesor humano puede tomar el control de una conversación en cualquier m
 ├── Agente-Basico-B-con-Historico-de-Conversacion/
 ├── Agente-Basico-C-con-Base-de-Conocimiento-SUPABASE/
 ├── Agente-Basico-D-con-BC-HC-ToolExterna/
+│
+├── RAG-Classic-con-LangChain/       # Ingesta de PDFs a Supabase (pipeline RAG)
+│   ├── rag.py                       # Loader → Splitter → Embeddings → VectorStore
+│   └── Base_de_Conocimientos/       # ⬅ pon aquí tus PDFs (no se versionan)
 │
 ├── tools/                           # Tools reutilizables por los agentes
 │   ├── Base_de_conocimiento.py      # RAG sobre Supabase

@@ -1,0 +1,7 @@
+# Coloca aquí los PDFs que quieras ingestar con rag.py
+#
+# El script rag.py espera por defecto:
+#     Base_de_Conocimientos/MANUAL DE TRÁMITES.pdf
+#
+# Si usas otro archivo, actualiza la variable `path` en rag.py.
+# Los PDFs no se versionan en el repo: cada uno usa sus propios documentos.
