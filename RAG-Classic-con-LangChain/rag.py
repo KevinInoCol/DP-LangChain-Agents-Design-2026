@@ -24,7 +24,7 @@ if __name__ == '__main__':
     documentos = loader.load()
 
 
-    #======================================= Paso 2: Chunking ===========================================
+    #============================= Paso 2: Document Splitting o Chunking ===========================================
     text_splitter =  RecursiveCharacterTextSplitter(
         chunk_size = 512, #1024
         chunk_overlap = 128,
@@ -41,7 +41,6 @@ if __name__ == '__main__':
     #======================= Paso 4: VectorStore - Llevamos los Embeddings a Supabase ====================
     supabase_url = os.getenv("SUPABASE_URL")
     supabase_key = os.getenv("SUPABASE_SECRET_KEY")
-    #supabase_key = os.getenv("SUPABASE_SERVICE_KEY")
 
     client = create_client(supabase_url, supabase_key)
 
