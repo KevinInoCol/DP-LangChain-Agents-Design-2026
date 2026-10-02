@@ -25,3 +25,10 @@ ENV/
 .DS_Store
 Thumbs.db
 .idea/
+
+# ============================================
+# Claude Code
+# ============================================
+# Las skills SÍ se versionan (.claude/skills/) para que todos las tengan.
+# Los permisos son locales de cada máquina:
+.claude/settings.local.json
