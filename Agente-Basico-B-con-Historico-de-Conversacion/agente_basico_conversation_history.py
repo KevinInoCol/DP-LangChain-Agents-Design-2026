@@ -12,7 +12,10 @@ Autor: Ing. Kevin Inofuente Colque - DataPath
 
 import os
 import uuid
+from pathlib import Path
 from urllib.parse import quote_plus
+
+import yaml
 from dotenv import load_dotenv, find_dotenv
 
 # Busca el .env en la carpeta actual o en las carpetas padre
@@ -63,11 +66,13 @@ chat = init_chat_model(
 # ============================================
 # 3. PROMPT CON PLACEHOLDER PARA HISTORIAL
 # ============================================
+# El system prompt vive en prompt/system_prompt.yaml (no hardcodeado en el .py)
+PROMPT_PATH = Path(__file__).parent / "prompt" / "system_prompt.yaml"
+with open(PROMPT_PATH, encoding="utf-8") as f:
+    system_prompt = yaml.safe_load(f)["system_prompt"]
+
 prompt = ChatPromptTemplate.from_messages([
-    ("system", """Eres un asistente de IA útil y amigable llamado DataBot.
-Responde las preguntas del usuario de manera clara y concisa.
-Puedes recordar conversaciones anteriores gracias a tu memoria persistente.
-Responde siempre en español."""),
+    ("system", system_prompt),
     MessagesPlaceholder(variable_name="history"),  # Aquí se inyecta el historial
     ("human", "{input}")
 ])
