@@ -22,10 +22,12 @@ from langchain_core.prompts import ChatPromptTemplate
 # ============================================
 # 1. CONFIGURACIÓN DEL MODELO
 # ============================================
-chat = init_chat_model(
-    "gpt-4.1",
-    temperature=0.7, # 0 a 1, no es configurable para modelos razonadores.
-)
+# La configuración vive en model_config/model_config.yaml (no hardcodeada en el .py)
+MODEL_CONFIG_PATH = Path(__file__).parent / "model_config" / "model_config.yaml"
+with open(MODEL_CONFIG_PATH, encoding="utf-8") as f:
+    model_config = yaml.safe_load(f)["model"]
+
+chat = init_chat_model(**model_config)
 
 # ============================================
 # 2. PROMPT SIMPLE (Sin placeholder de historial)
