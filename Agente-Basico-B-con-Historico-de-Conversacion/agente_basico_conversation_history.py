@@ -57,11 +57,12 @@ print(f"🔌 Conectando como: {DB_USER}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 # ============================================
 # 2. CONFIGURACIÓN DEL MODELO
 # ============================================
-chat = init_chat_model(
-    "gpt-4.1",
-    #"google_genai:gemini-3-flash-preview",
-    temperature=0.7,
-)
+# La configuración vive en model_config/model_config.yaml (no hardcodeada en el .py)
+MODEL_CONFIG_PATH = Path(__file__).parent / "model_config" / "model_config.yaml"
+with open(MODEL_CONFIG_PATH, encoding="utf-8") as f:
+    model_config = yaml.safe_load(f)["model"]
+
+chat = init_chat_model(**model_config)
 
 # ============================================
 # 3. PROMPT CON PLACEHOLDER PARA HISTORIAL

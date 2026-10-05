@@ -1,0 +1,13 @@
+name: agente-basico-b-model-config
+version: 1.0.0
+description: >
+  Configuración del modelo de DataBot (Agente-Basico-B).
+  Se pasa tal cual a init_chat_model().
+author: kevin.inofuente.colque.27@gmail.com
+created_at: 2026-10-02
+
+model:
+  model: gpt-4.1
+  model_provider: openai
+  # Alternativa: model: gemini-3-flash-preview / model_provider: google_genai
+  temperature: 0.7  # 0 a 1, no es configurable para modelos razonadores.

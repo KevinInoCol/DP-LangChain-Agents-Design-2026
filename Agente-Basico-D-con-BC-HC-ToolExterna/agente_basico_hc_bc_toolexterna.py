@@ -64,7 +64,12 @@ tools = [
 # ============================================
 # 3. CONFIGURACIÓN DEL MODELO CON TOOLS
 # ============================================
-chat = init_chat_model("gpt-4.1", temperature=0.7) #gpt-o4-mini
+# La configuración vive en model_config/model_config.yaml (no hardcodeada en el .py)
+MODEL_CONFIG_PATH = Path(__file__).parent / "model_config" / "model_config.yaml"
+with open(MODEL_CONFIG_PATH, encoding="utf-8") as f:
+    model_config = yaml.safe_load(f)["model"]
+
+chat = init_chat_model(**model_config)
 chat_con_tools = chat.bind_tools(tools)
 
 # ============================================
